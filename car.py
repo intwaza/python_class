@@ -5,4 +5,4 @@ class Car:
     def start(self):
         return f"I am starting my car which has color of {self.color}"
     def speed(self):
-        return f"My car of {self.make} has 400speed/km"
+        return f"My car of {self.make} is running on 400speed/km"
