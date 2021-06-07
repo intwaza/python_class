@@ -5,7 +5,7 @@ class Student:
         self.last_name=last_name
         self.age=age
     def speak(self):
-        return f"Hello class, My name is {self.name}"
+        return f"Hello class, My name is {self.first_name} {self.last_name}"
     def year_of_birth(self):
         return f"Hello {self.first_name} {self.last_name},you was born {2021-self.age}"
     def greet(self):

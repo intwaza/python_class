@@ -44,11 +44,47 @@ class BankAccount:
 
 
     def borrow(self,amount):
-        self.loan+=amount
-        return f"Dear customer {self.name} you have borrowed {self.loan} ksh"
+        limit=10/100
+        if amount<0:
+            return "sorry we can't give you this loan it is too loan"
+        elif self.loan>0:
+            return f"Dear customer you still have a loan of {self.loan}"
+        elif amount>=self.balance*limit:
+            return f"Dear customer you can't borrow that money is lower than a limit of {self.balance*limit}"
+        else:
+            loan=amount*1.05
+            self.balance+=amount
+            self.loan=loan
+
+            now= datetime.now()
+            transaction={
+                "amount":amount,
+                "time":now,
+                "Narration":"you have borrowed"
+            }
+            self.statement.append(transaction)
+
+            return f"Dear customer {self.name} you have borrowed {self.loan} ksh"
     def repay(self,amount):
-        self.loan-=amount
-        return f"Dear customer {self.name} you loan is {self.loan} ksh you have paid {amount}"
+        if amount<0:
+            return "Dear customer your payment is too low"
+        elif amount<=self.loan:
+            self.loan-=amount
+            return f"Dear customer you have fully paid your loan"
+        else:
+            payment=amount-self.loan
+            self.loan=0
+            self.balance+=payment
+
+            now= datetime.now()
+            transaction={
+                "amount":amount,
+                "time":now,
+                "Narration":"you have repayed your loan"
+            }
+            self.statement.append(transaction)
+
+            return f"Dear customer {self.name} you have paid your loan and your new balance is {self.balance}"
 
     def showStatement(self):
         for transaction in self.statement:
