@@ -130,7 +130,7 @@ class BankAccount:
 
 class MobileMoneyAccount(BankAccount):
     def __init__(self, name, phone_number,service_provider):
-        BankAccount.__init__(name, phone_number)
+        BankAccount. __init__(self, name, phone_number)
         self.service_provider= service_provider
     
     def buy_airtime(self,amount):
